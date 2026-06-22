@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>九游官网 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f9fc;
+      color: #1d2d3a;
+      line-height: 1.6;
+      padding: 0 16px 50px;
+    }
+
+    .page-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 12px 40px rgba(0, 50, 60, 0.06);
+      overflow: hidden;
+      margin-top: 24px;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: linear-gradient(145deg, #0f3b44 0%, #1a5b66 100%);
+      padding: 52px 36px 48px;
+      color: white;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -10px;
+      bottom: -15px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at 30% 40%, rgba(70, 200, 190, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      max-width: 700px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin-top: 8px;
+      font-weight: 350;
+    }
+
+    .hero .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-top: 28px;
+    }
+
+    .hero .tag-grid span {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(1px);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #c9edea;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* 网格卡片区域 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 32px 28px 20px;
+      background: #ffffff;
+    }
+
+    @media (min-width: 680px) {
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 40px 36px 28px;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .feature-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 48px 44px 32px;
+      }
+    }
+
+    .card {
+      background: #f7fbfd;
+      border-radius: 24px;
+      padding: 24px 22px 26px;
+      border: 1px solid #dcecf0;
+      transition: box-shadow 0.2s ease, background 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(25, 100, 110, 0.07);
+      background: #f2f9fc;
+      border-color: #b2d9de;
+    }
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: #d6ecf0;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      color: #1a5b66;
+      font-size: 1.3rem;
+      font-weight: 400;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      color: #0e3c46;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2f4b56;
+      line-height: 1.6;
+      margin-bottom: 6px;
+      flex: 1;
+    }
+
+    .card .meta-tag {
+      display: inline-block;
+      background: #d7ebef;
+      color: #1a5b66;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 2px 12px;
+      border-radius: 30px;
+      margin-top: 10px;
+      width: fit-content;
+      letter-spacing: 0.02em;
+    }
+
+    /* 背景说明 + 三段介绍 紧凑区 */
+    .context-area {
+      padding: 12px 28px 28px;
+      background: #ffffff;
+    }
+
+    @media (min-width: 680px) {
+      .context-area {
+        padding: 8px 36px 36px;
+      }
+    }
+
+    .background-note {
+      background: #eaf4f7;
+      border-radius: 28px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      border-left: 5px solid #2c8b97;
+    }
+
+    .background-note h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #11414b;
+      margin-bottom: 8px;
+    }
+
+    .background-note p {
+      color: #2d4e5a;
+      font-size: 0.98rem;
+      max-width: 780px;
+    }
+
+    .intro-triptych {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    @media (min-width: 680px) {
+      .intro-triptych {
+        flex-direction: row;
+        gap: 36px;
+      }
+    }
+
+    .intro-block {
+      flex: 1;
+      padding: 6px 0 0;
+    }
+
+    .intro-block h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #1a606b;
+      border-bottom: 2px solid #bfdde4;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .intro-block p {
+      font-size: 0.94rem;
+      color: #314f59;
+      line-height: 1.7;
+    }
+
+    /* 页尾访问提示 */
+    .footer-prompt {
+      background: #eef6f9;
+      margin: 10px 28px 30px;
+      padding: 24px 28px;
+      border-radius: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (min-width: 680px) {
+      .footer-prompt {
+        margin: 20px 36px 36px;
+        padding: 28px 40px;
+      }
+    }
+
+    .footer-prompt .text {
+      font-size: 1rem;
+      color: #1d3b45;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .footer-prompt .text a {
+      color: #0d6a78;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #a0cbd4;
+      transition: border-color 0.15s;
+    }
+
+    .footer-prompt .text a:hover {
+      border-bottom-color: #0d6a78;
+    }
+
+    .prompt-label {
+      background: #d7eef1;
+      padding: 6px 20px;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #134b56;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    /* 小字 FAQ 摘要 */
+    .faq-mini {
+      padding: 0 28px 30px;
+    }
+
+    @media (min-width: 680px) {
+      .faq-mini {
+        padding: 6px 36px 40px;
+      }
+    }
+
+    .faq-mini h5 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1b5460;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .faq-mini details {
+      border-bottom: 1px solid #d2e4e9;
+      padding: 12px 0;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      color: #1d4954;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 4px 0;
+    }
+
+    .faq-mini details p {
+      font-size: 0.85rem;
+      color: #385762;
+      padding: 8px 0 2px 10px;
+      max-width: 680px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dae9ee;
+      margin: 12px 28px 0;
+    }
+
+    .bottom-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #6f8d96;
+      padding: 24px 0 12px;
+      letter-spacing: 0.01em;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 首页横幅 hero -->
+  <div class="hero">
+    <h1>九游 · 全平台游戏聚合</h1>
+    <p>跨越移动与 PC 的多元内容生态，从轻度休闲到策略竞技，持续拓展你的游戏边界。</p>
+    <div class="tag-grid">
+      <span>🎮 新游情报</span>
+      <span>📊 社区榜单</span>
+      <span>🕹️ 云试玩</span>
+      <span>🏆 赛事日历</span>
+    </div>
+  </div>
+
+  <!-- 网格卡片 三个特点 -->
+  <div class="feature-grid">
+    <div class="card">
+      <div class="card-icon">📌</div>
+      <h3>每日精选合辑</h3>
+      <p>编辑团队从类型、热度、玩家口碑等多维度筛选，提供兼具可玩性与新鲜度的推荐列表。</p>
+      <span class="meta-tag">独立评测</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔄</div>
+      <h3>多端数据同步</h3>
+      <p>账户、进度与成就体系贯通手机与桌面，无缝切换设备，不再受限于单一平台。</p>
+      <span class="meta-tag">云存档</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗂️</div>
+      <h3>开发者专栏</h3>
+      <p>定期邀请制作人、美术与策划分享幕后笔记，从设计思路到技术实现，呈现游戏工业的真实切面。</p>
+      <span class="meta-tag">幕后故事</span>
+    </div>
+  </div>
+
+  <!-- 背景说明 + 三段自然介绍 -->
+  <div class="context-area">
+    <div class="background-note">
+      <h2>从关键词到全景：不止于入口</h2>
+      <p>「九游」所代表的不是单一下载渠道，而是一套围绕发现、体验与沉淀的内容框架。通过聚合中长尾作品、辅助玩家决策以及搭建交流场景，逐步形成具有辨识度的数字娱乐节点。</p>
+    </div>
+
+    <div class="intro-triptych">
+      <div class="intro-block">
+        <h4>主题 · 发现机制</h4>
+        <p>基于标签、行为与季节主题构建推荐逻辑，弱化纯榜单依赖。同时提供编辑手记与玩家短评，帮助判断游戏是否契合自己。</p>
+      </div>
+      <div class="intro-block">
+        <h4>场景 · 轻量介入</h4>
+        <p>支持免安装试玩片段与交互式截图，降低决策门槛。无论是通勤间隙还是午休片段，都可快速体验核心玩法。</p>
+      </div>
+      <div class="intro-block">
+        <h4>沉淀 · 讨论氛围</h4>
+        <p>社区以攻略互助、同人创作与长评分析为主，鼓励理性表达与内容产出。每周设有话题接龙，持续搭建有温度的交流场域。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-prompt">
+    <div class="text">
+      若希望进一步浏览不同品类、查看完整详情与用户评价，可直接前往
+      <a href="https://your-9game.com">九游官网</a>，查阅完整内容索引。
+    </div>
+    <span class="prompt-label">🔗 持续更新 · 自由探索</span>
+  </div>
+
+  <!-- FAQ 摘要（小） -->
+  <div class="faq-mini">
+    <h5>常见摘要 FAQ</h5>
+    <details>
+      <summary>平台是否包含付费游戏推荐？</summary>
+      <p>涵盖免费与买断制作品，推荐基于玩法与完成度，而非商业合作。付费条目均会明确标注价格与内购说明。</p>
+    </details>
+    <details>
+      <summary>如何参与开发者专栏投稿？</summary>
+      <p>开发团队或发行方可使用官网的联系表单提交简介与作品 Demo，编辑部评估后会发出访谈邀请。</p>
+    </details>
+    <details>
+      <summary>云试玩是否需要安装插件？</summary>
+      <p>部分试玩基于 WebGL 或流式串流，建议使用最新版 Chrome / Edge 浏览器，无须额外安装客户端。</p>
+    </details>
+  </div>
+
+  <hr>
+  <div class="bottom-note">杂志专题 · 九游内容索引</div>
+</div>
+</body>
+</html>
